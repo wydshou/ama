@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:45:"E:\WWW\ymx./app/admin\view\role\adminadd.html";i:1540805951;s:42:"E:\WWW\ymx\app\admin\view\Public\meta.html";i:1540801719;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:45:"E:\WWW\ymx./app/admin\view\role\adminadd.html";i:1540809712;s:42:"E:\WWW\ymx\app\admin\view\Public\meta.html";i:1540801719;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -39,7 +39,7 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="<?php echo $user['username']; ?>" placeholder="" id="adminName" name="adminName">
+			<input type="text" class="input-text" value="" placeholder="" id="adminName" name="adminName">
 		</div>
 	</div>
 	<div class="row cl">
@@ -58,13 +58,13 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="<?php echo $user['phone']; ?>" placeholder="" id="phone" name="phone">
+			<input type="text" class="input-text" value="" placeholder="" id="phone" name="phone">
 		</div>
 	</div>
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" placeholder="@" name="email" id="email" value="<?php echo $user['email']; ?>">
+			<input type="text" class="input-text" placeholder="@" name="email" id="email" value="">
 		</div>
 	</div>
 	<div class="row cl">

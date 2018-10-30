@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:46:"E:\WWW\ymx./app/admin\view\role\adminlist.html";i:1540809138;s:42:"E:\WWW\ymx\app\admin\view\Public\meta.html";i:1540801719;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:46:"E:\WWW\ymx./app/admin\view\role\adminlist.html";i:1540879842;s:42:"E:\WWW\ymx\app\admin\view\Public\meta.html";i:1540801719;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -62,16 +62,20 @@
 		<?php if(is_array($user) || $user instanceof \think\Collection || $user instanceof \think\Paginator): $i = 0; $__LIST__ = $user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 			<tr class="text-c">
 				<td><input type="checkbox" value="1" name=""></td>
-				<td>1</td>
+				<td><?php echo $vo['admin_id']; ?></td>
 				<td><?php echo $vo['user_name']; ?></td>
 				<td><?php echo !empty($vo['telephone'])?$vo['telephone'] : '无'; ?></td>
 				<td><?php echo !empty($vo['email'])?$vo['email'] : '无'; ?></td>
-				<td>超级管理员</td>
+				<td><?php echo $vo['jue']; ?></td>
 				<td><?php echo date('Y-m-d H:i:s',$vo['create_time']); ?></td>
 				<td class="td-status">
 					<?php switch($vo['status']): case "0": ?><span class="label label-default radius">已禁用</span><?php break; case "1": ?><span class="label label-success radius">已启用</span><?php break; endswitch; ?>
 				</td>
-				<td class="td-manage"><a style="text-decoration:none" onClick="admin_stop(this,'<?php echo $vo['admin_id']; ?>')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> <a title="编辑" href="javascript:;" onclick='admin_edit("管理员编辑","<?php echo url("Role/admin_add"); ?>","1","800","500")' class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick='admin_del(this,"<?php echo $vo['admin_id']; ?>")' class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+				<td class="td-manage">
+					<?php switch($vo['status']): case "0": ?><a onClick="admin_start(this,'<?php echo $vo['admin_id']; ?>')" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a><?php break; case "1": ?> <a style="text-decoration:none" onClick="admin_stop(this,'<?php echo $vo['admin_id']; ?>')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> 	<?php break; endswitch; ?>
+					<a title="编辑" href="javascript:;" onclick='admin_edit("管理员编辑","<?php echo url("Role/admin_add"); ?>","1","800","500")' class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+					<a title="删除" href="javascript:;" onclick='admin_del(this,"<?php echo $vo['admin_id']; ?>")' class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+				</td>
 			</tr>
 		<?php endforeach; endif; else: echo "" ;endif; ?>
 		</tbody>
@@ -125,10 +129,6 @@ function admin_edit(title,url,id,w,h){
 function admin_stop(obj,id){
 	console.log(obj);
 	layer.confirm('确认要停用吗？',function(index){
-			// $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,id)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
-			// 		$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已禁用</span>');
-			// 		$(obj).remove();
-			// 		layer.msg('已停用!',{icon: 5,time:1000});
 		//此处请求后台程序，下方是成功后的前台处理……
 		$.ajax({
 			type: 'POST',
@@ -156,6 +156,7 @@ function admin_stop(obj,id){
 
 /*管理员-启用*/
 function admin_start(obj,id){
+		console.log(id);
 	layer.confirm('确认要启用吗？',function(index){
 		//此处请求后台程序，下方是成功后的前台处理……
 		$.ajax({
@@ -167,7 +168,7 @@ function admin_start(obj,id){
 			url: "<?php echo url('Role/status'); ?>",
 			dataType: 'json',
 			success: function(res){
-				if (res.code ==1){
+			if (res.code ==1){
 				$(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_stop(this,'+res.id+')" href="javascript:;" title="停用" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>');
 				$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
 				$(obj).remove();
@@ -176,9 +177,7 @@ function admin_start(obj,id){
 				layer.msg('失败!', {icon: 6,time:1000});
 				}
 			}
-		)}
-	
-	
+		})
 	});
 }
 </script>

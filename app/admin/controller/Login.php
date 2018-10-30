@@ -28,12 +28,12 @@ class Login extends Base
 				if ($user_info && $user_info['status'] == 1) {
 					if (think_ucenter_encrypt($data['password'],config('PWD_KEY')) == $user_info['passwd']){
 						//权限
-							// $group=Db::name('auth_group_access')->where('uid',$user_info['admin_id'])->find();
+							$group=Db::name('auth_group_access')->where('uid',$user_info['admin_id'])->find();
 					
 					        $auth = array(
 					            'uid'             => $user_info['admin_id'],
 					            'username'        => $user_info['user_name'],
-					            // 'group_id'			  => $group['group_id']			//权限          
+					            'group_id'		  => $group['group_id']			//权限          
 							 );		
 					        session('user_auth', $auth);
 					        session('user_auth_sign',data_auth_sign($auth)); //加密数据

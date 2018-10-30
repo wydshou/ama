@@ -15,7 +15,12 @@ class Role extends AdminBase
     public function adminlist()
     {
     	$user = Db::name('admin')->order('create_time desc')->select();
-    	$count = count($user);
+        $db = Db::name('auth_group');
+        foreach ($user as $key => &$value) {
+            $value['jue'] = $db->where('id',$value['group_id'])->value('title');
+        }
+        unset($value);
+    	$count = count($user); 
     	$this->assign('count',$count);
     	$this->assign('user',$user);
     	return $this->fetch();
@@ -24,10 +29,23 @@ class Role extends AdminBase
     //角色管理
     public function rolelist()
     {
-    	return $this->fetch();
+        $auth = Db::name('auth_group')->order('id asc')->select();
+    	$this->assign('auth',$auth);
+        return $this->fetch();
+    }
+    //添加角色  所管理的权限
+    public function role_add(){
+        return $this->fetch();
     }
 
-    //添加角色
+
+    //权限管理
+    public function role()
+    {
+        return $this->fetch();
+    }
+
+    //添加管理员
     public function admin_add()
     {
     	$admin = Db::name('admin');
@@ -55,7 +73,7 @@ class Role extends AdminBase
     		$res['passwd'] = think_ucenter_encrypt($data['password'],config('PWD_KEY'));
     		$admin_id = $admin->insert($res,false,true);	
     		if($admin_id){
-				// Db::name('auth_group_access')->insert(['uid'=>$admin_id,'group_id'=>$data['group_id']],false,true);
+				Db::name('auth_group_access')->insert(['uid'=>$admin_id,'group_id'=>$res['group_id']],false,true);
 				storage_user_action(UID,session('user_auth.username'),config('BACKEND_USER'),'新增了系统用户');
 				return ['code'=>1,'success'=>'新增成功','action'=>'add'];
 			}else{
@@ -84,7 +102,6 @@ class Role extends AdminBase
     	{
     		$id = input('post.id');
     		$type = input('post.type');
-
     		if ($type == 1){
     			 $data = 1; 
     		}elseif ($type ==0){
@@ -97,5 +114,5 @@ class Role extends AdminBase
     			return ['code'=>2];
     		}
     	}
-    }
+    } 
 }
