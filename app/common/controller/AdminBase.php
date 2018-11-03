@@ -15,11 +15,10 @@ class AdminBase extends Base
 	{
 		parent::_initialize();
 		define('UID',wyd_service('admin','user')->is_login());
-		$this->get_menu();
 		if (!UID) {
 			$this->redirect('admin/login/login');
 		}
- 
+ 		$this->get_menu();
 		//统一 AdminBase 跳转模板
 		// config('dispatch_error_tmpl',APP_PATH.'common/view/public/error.tpl');
 		// config('dispatch_success_tmpl',APP_PATH.'common/view/public/success.tpl');

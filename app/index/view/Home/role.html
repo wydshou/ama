@@ -1,0 +1,80 @@
+{extend  name="Public:base" /}
+{block name="main"}  
+	<div class="content-page"  >
+			<!-- Start content -->
+			<div class="content">
+				<div class="card-box">
+  <ul class="am-nav am-navbar-nav">
+		<li><h4 class="page-title">角色管理 <a href="{:url('Home/addrole')}"><button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span>创建角色</button></a></h4></li>
+				</ul>
+
+			<div class="am-g" style="padding-top: 30px;">
+        <div class="am-u-sm-12">
+        
+            <table class="am-table am-table-striped am-table-hover table-main">
+              <thead>
+            <tr>
+        
+                <th class="table-set">角色名称</th>
+				 <th class="table-set">角色描述</th>
+				 <!-- <th class="table-set">创建时间	</th> -->
+             
+                <th class="table-set">操作</th>
+              </tr>
+              </thead>
+              <tbody>
+		{volist name="auth" id="role"}              	
+              <tr>
+                <td>{$role.title}</td>
+                <td class="am-hide-sm-only">{$role.description}</td>
+                <!-- <td class="am-hide-sm-only"></td> -->
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><a href="{:url('Home/editrole',['id'=>$role['id']])}"><span class="am-icon-pencil-square-o"></span>编辑</a></button>
+                       <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span>删除</button>
+                    
+                    </div>
+                  </div>
+                </td>
+              </tr>
+         {/volist}
+              </tbody>
+            </table>
+            <div class="am-cf"> 
+              <!-- 共 15 条记录 -->
+              <div class="am-fr">
+                  {$page}
+              </div>
+            </div>
+       <!--      <hr />
+            <p>注：.....</p> -->
+        
+        </div>
+      </div>
+					  
+					</div>
+		
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+ <!--  <script type="text/javascript">
+          $("form").submit(function(){
+            var self = $(this);
+            $.post(self.attr("action"), self.serialize(), success, "json");
+            return false;
+
+            function success(data){
+              console.log(data)
+              if (data.error){
+                self.find(".check-tips").text(data.error);
+              }else if(data.success){
+                  layer.msg('添加成功!',{icon:1,time:1000});
+                  window.location.href = "{:url('home/adminlist')}";
+              }
+            }
+          });
+    </script> -->
+{/block}

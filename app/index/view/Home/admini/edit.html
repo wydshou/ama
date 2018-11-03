@@ -1,0 +1,55 @@
+{extend  name="Public:base" /}
+{block name="main"}  
+		<div class="content-page">
+			<div class="content">
+			<div class="card-box">
+			<div class="am-g">
+				<div class="am-u-md-6">
+					<div class="card-box">
+						<h4 class="header-title m-t-0 m-b-30">修改权限</h4>
+			<form class="am-form am-form-horizontal" action="{:url('Home/adminedit')}" method="post">
+				<div class="am-form-group">
+					 <label for="doc-ipt-pwd-3" class="am-u-sm-3 am-form-label am-text-right am-padding-right-0">角色</label>
+					<div class="am-u-sm-9">
+						<span class="select-box">
+						<select class="select" id="sel_Sub" name="group_id">
+						{volist name="home_group" id="g"}
+							<option value="{$g.id}" {if condition="$g.id == $group['group_id']"}selected="selected"{/if}>{$g.title}</option>
+						{/volist}
+						</select>
+						</span>
+					</div>
+					<div class="col-3">
+					</div>
+				</div>
+				<input type="hidden" name="aid" value="{$group.a_uid}">
+				  <div class="check-tips" style="color:red;padding-left: 10px; text-align: center;"></div>
+						  <div class="am-form-group">
+						    <div class="am-u-sm-10 am-u-sm-offset-3">
+						    	 <button type="submit" class="am-btn am-btn-primary">提交</button>
+						    </div>
+							  </div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		      $("form").submit(function(){
+		        var self = $(this);
+		        $.post(self.attr("action"), self.serialize(), success, "json");
+		        return false;
+
+		        function success(data){
+		        	console.log(data)
+		        	if (data.error){
+		        		self.find(".check-tips").text(data.error);
+		        	}else if(data.success){
+		        		  layer.msg('修改成功!',{icon:1,time:1000});
+		        		  window.location.href = "{:url('home/adminlist')}";
+		        	}
+		        }
+		      });
+		</script>
+{/block}

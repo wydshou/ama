@@ -1,0 +1,59 @@
+ <div class="admin-sidebar am-offcanvas  am-padding-0" id="admin-offcanvas">
+            <div class="am-offcanvas-bar admin-offcanvas-bar">
+                <!-- User -->
+                <div class="user-box am-hide-sm-only">
+                    <div class="user-img">
+                        <img src="__HOME__/assets/img/avatar-1.jpg" alt="user-img" title="Mat Helme" class="img-circle img-thumbnail img-responsive">
+                        <div class="user-status offline"><i class="am-icon-dot-circle-o" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <h5><a href="html/form_validate.html"><?php echo session('member_user_auth.username'); ?></a> </h5>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#">
+                                <i class="am-icon-cog" aria-hidden="true"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="text-custom">
+                                <i class="am-icon-cog" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End User -->
+                <ul class="am-list admin-sidebar-list">
+                    <li><a href="index.html"><span class="am-icon-home"></span> 首页</a>
+                    </li>
+                    <li class="admin-parent">
+                        <a class="am-cf" data-am-collapse="{target: '#collapse-nav1'}"><span class="am-icon-table"></span> 权限管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav1">
+                            <li><a href="index_admin_js.html" class="am-cf"><span>角色管理</span></a>
+                            </li>
+                            <li><a href="index_admin.html">管理员列表</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="admin-parent">
+                        <a class="am-cf" data-am-collapse="{target: '#collapse-nav6'}"><span class="am-icon-file"></span> 平台授权 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav6">
+                            <li><a href="index_mj.html" class="am-cf">卖家账号列表</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="admin-parent">
+                        <a class="am-cf" data-am-collapse="{target: '#collapse-nav7'}"><span class="am-icon-file"></span> 服务开通<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav7">
+                            <li><a href="index_order.html">权限开通</a>
+                            </li>
+                            <li><a href="index_order_1.html">订单</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+        </div>
+</div>

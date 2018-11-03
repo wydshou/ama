@@ -1,28 +1,34 @@
 <?php
 /**
- * @author shou <[<email address>]>
- * @param 后台验证 $[name] [<description>]
- */
+ * @author    shou
+ *
+ * 用户注册验证
+ */ 
 namespace app\common\validate;
 use think\Validate;
 class Member extends Validate
 {
-    protected $rule = [
-        'adminName'  =>  'require|min:2|unique:member',
+       protected $rule = [
+        'user_name'  =>  'require|min:2|unique:member',
         'password'=>'require|min:6',
-        'passwoed2'=>'require|confirm:password'    
+        'email'  =>  'unique:member',
     ];
 
     protected $message = [
-        'adminName.require'  =>  '用户名必填',
-        'adminName.min'  =>  '用户名不能小于两个字',     
-        'adminName.unique'  =>  '用户名已经存在',
+        'user_name.require'  =>  '用户名必填',
+        'user_name.min'  =>  '用户名不能小于两个字',     
+        'user_name.unique'  =>  '用户名已经存在',
         
-		'password.require'  =>  '密码必填',
-		'password.min'  =>  '密码不能小于6位',  
-		'passwoed2.require'  =>  '确认密码必填',
-		'passwoed2.confirm'  =>  '两次密码不一样'
-		
+        'password.require'  =>  '密码必填',
+        'password.min'  =>  '密码不能小于6位',     
+            
+        'email.unique'  =>  '邮箱已经存在',
+       
     ];
-	
+    
+    protected $scene = [
+        'edit'  =>  ['password','email'],
+    ];
+    
 }
+?>

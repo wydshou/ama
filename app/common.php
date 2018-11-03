@@ -180,3 +180,55 @@ function list_to_tree($list, $pk='id', $pid = 'pid', $child = 'children', $root 
     }
     return $tree;
 }
+
+ /**
+*   发送邮箱
+*   @param $to 目标邮箱 $name 标题
+*   @param $body 邮箱内容
+*   @return true  错误信息
+*/
+function think_send_mail($to, $name, $subject = '', $body = '', $attachment = null){
+    vendor('mailer.PHPMailer');
+    vendor('mailer.SMTP'); 
+    $mail = new \Phpmailer();
+    $mail->CharSet    = 'UTF-8'; //设定邮件编码，默认ISO-8859-1，如果发中文此项必须设置，否则乱码
+    $mail->IsSMTP();  // 设定使用SMTP服务
+    $mail->SMTPDebug  = 0;                     // 关闭SMTP调试功能
+    $mail->SMTPAuth   = true;                  // 启用 SMTP 验证功能
+  //  $mail->SMTPSecure = 'ssl';                 // 使用安全协议
+    $mail->Host       = config('MAIL_HOST');  // SMTP 服务器
+    $mail->Port       = 25;  // SMTP服务器的端口号
+    $mail->Username   = config('MAIL_USERNAME');  // SMTP服务器用户名
+    $mail->Password   = config('MAIL_PASSWORD');  // SMTP服务器密码
+    $mail->From = config('MAIL_FROM'); //发件人地址（也就是你的邮箱地址）
+    $mail->FromName = config('MAIL_FROMNAME'); //发件人姓名
+    $mail->Subject    = $subject;
+    $mail->MsgHTML($body);
+    $mail->AddAddress(config('MAIL_FROM'), config('MAIL_FROMNAME'));
+    $mail->AddCC($to); //添加抄送人      163邮箱限制 先发送邮箱自己账号 再抄送用户账号
+    if(is_array($attachment)){ // 添加附件 
+        foreach ($attachment as $file){
+            is_file($file) && $mail->AddAttachment($file);
+        }
+    }
+    return $mail->Send() ? true : $mail->ErrorInfo;
+}
+
+//驼峰命名法转下划线风格
+function to_under_score($str){
+        
+    $array = array();
+    for($i=0;$i<strlen($str);$i++){
+        if($str[$i] == strtolower($str[$i])){
+            $array[] = $str[$i];
+        }else{
+            if($i>0){
+                $array[] = '_';
+            }
+            $array[] = strtolower($str[$i]);
+        }
+    }
+    
+    $result = implode('',$array);
+    return $result;
+}

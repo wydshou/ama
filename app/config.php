@@ -56,7 +56,7 @@ return [
     // 默认模块名
     'default_module'         => 'index',
     // 禁止访问模块
-    'deny_module_list'       => ['common'],
+    'deny_module_list'       => ['common'], 
     // 默认控制器名
     'default_controller'     => 'Index',
     // 默认操作名
@@ -145,11 +145,19 @@ return [
           '__PUBLIC__'=>'/public/static',
         '__RES__'=>'/public/static/view_res',
         '__ADMIN__' =>'/public/static/view_res/admin',
+        '__HOME__' => '/public/Home',
          'IMG_ROOT'=>'/'
     ],
     // 默认跳转页面对应的模板文件
-    'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
-    'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
+    // 'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
+    // 'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
+
+    'URL_HTML_SUFFIX'=>'',
+    //默认错误跳转对应的模板文件
+    'dispatch_error_tmpl' => APP_PATH.'common/view/public/error.tpl',
+    //默认成功跳转对应的模板文件
+    'dispatch_success_tmpl' => APP_PATH.'common/view/public/success.tpl',   
+
 
     // +----------------------------------------------------------------------
     // | 异常及错误设置
@@ -238,9 +246,9 @@ return [
     ],
 
     //分页配置
-    'paginate'               => [
-        'type'      => 'bootstrap',
-        'var_page'  => 'page',
-        'list_rows' => 15,
-    ],
+   'paginate'               => [  
+       'type'      => 'page\Page',//分页类  
+       'var_page'  => 'page',  
+       'list_rows' => 15,  
+   ],
 ];

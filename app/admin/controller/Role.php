@@ -56,7 +56,7 @@ class Role extends AdminBase
     	//  	$this->assign('user',$user);
     	// }
     	if (request()->isPost()) {
-    		$data = input('post.');
+    		$data = input('post.'); 
     		//判断
     		if($admin->where('user_name',$data['adminName'])->find()){
     			return ['code'=>2,'error'=>'用户名已经存在'];

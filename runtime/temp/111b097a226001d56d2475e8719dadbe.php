@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:46:"E:\WWW\ymx./app/admin\view\system\addcate.html";i:1540878219;s:42:"E:\WWW\ymx\app\admin\view\Public\meta.html";i:1540801719;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:46:"E:\WWW\ymx./app/admin\view\system\addcate.html";i:1540878386;s:42:"E:\WWW\ymx\app\admin\view\Public\meta.html";i:1540801719;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -144,10 +144,7 @@
 		 function success(data){
 		 	if (data.code == 1){
 		 		layer.msg('成功!', {icon: 6,time:1000});
-			 var index = parent.layer.getFrameIndex(window.name);
-				parent.$('.btn-refresh').click();
-				parent.layer.close(index);
-
+		 		window.location.reload()
 		 	}else{
 		 		 layer.msg('失败!', {icon: 6,time:1000});
 		 	}

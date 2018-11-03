@@ -1,0 +1,169 @@
+{extend  name="Public:base" /}
+{block name="main"}  
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<!-- <style type="text/css">
+	.permission-list > dd > dl > dt {
+		float: none;
+	}
+</style> -->
+
+	<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+			<div class="card-box">
+			<!-- row start -->
+			<div class="am-g">
+				<div class="am-u-md-8">
+					<div class="card-box">
+						<h4 class="header-title m-t-0 m-b-30">添加角色</h4>
+				<form class="am-form am-form-horizontal" method="post" action="{:url('Home/addrole')}">
+				  <div class="am-form-group">
+			    <label for="doc-ipt-3" class="am-u-sm-3 am-form-label am-text-right am-padding-right-0">角色名</label>
+			    <div class="am-u-sm-9">
+			      <input type="text" id="doc-ipt-3" name="roleName" placeholder="新添加角色名">
+			    </div>
+			  </div>
+			 	 <div class="am-form-group">
+			    <label for="doc-ipt-3" class="am-u-sm-3 am-form-label am-text-right am-padding-right-0">角色描述</label>
+			    <div class="am-u-sm-9">
+			      <input type="text" id="doc-ipt-3" name="roledesc" placeholder="角色描述">
+			    </div>
+			  </div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">网站角色：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+		{volist name="access_menu" id="node"}
+				<dl class="permission-list">
+					<dt>
+						<label>
+							<input type="checkbox" value="<?php echo $node['id'] ?>" class="auth_rules" name="rules[]" id="user-Character-0">
+							{$node['title']}</label>
+					</dt>
+					<dd>
+						<!-- 二级 -->
+			{present name="node['child']"}
+				{foreach name="node['child']" item="op"}
+						<dl class="cl permission-list2">
+							<dt>
+								<label class="" {notempty name="child['tip']"} title='{$child.tip}'{/notempty}>
+									<input type="checkbox" name="rules[]" class="auth_rules" value="<?php echo $op['id'] ?>" id="user-Character-0-0">
+									{$op.title}</label>
+							</dt>
+							<dd>
+							{notempty name="op['child']"}
+								{foreach name="op['child']" item="vvv"}	
+								<label class="">
+									<input type="checkbox" name="rules[]" class="auth_rules"  value="<?php echo $vvv['id'] ?>" id="user-Character-0-0-0">
+									{$vvv.title}</label>
+								{/foreach}
+							{/notempty}
+							</dd>
+						</dl>
+					{/foreach}
+			{/present}
+					</dd>
+				</dl>
+		{/volist}
+			</div>
+		</div>
+	<!-- {volist name="access_menu" id="node"}
+				<dl class="permission-list">
+					<dt>
+						<label>
+							<input type="checkbox" value="" name="user-Character-0" id="user-Character-0">
+							{$node['title']}</label>
+					</dt>
+					<dd>
+					
+			{present name="node['child']"}
+				{foreach name="node['child']" item="op"}
+						<dl class="cl permission-list2">
+							<dt>
+								<label class="">
+									<input type="checkbox" value="" name="user-Character-0-0" id="user-Character-0-0">
+									{$op.title}</label>
+							</dt>
+					{notempty name="op['child']"}
+					 	{foreach name="op['child']" item="child"}
+						<dt style="padding-left: 10px;display: block;">
+								<label class="">
+									<input type="checkbox" value="" name="user-Character-0-0" id="user-Character-0-0">
+									{$child.title}</label>
+						</dt>
+					
+							<dd>
+							{notempty name="child['child']"}
+								{foreach name="child['child']" item="vvv"}	
+								<label class="">
+									<input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-0">
+									{$vvv.title}</label>
+								{/foreach}
+							{/notempty}
+							</dd>
+					{/foreach}
+					{/notempty}
+						</dl>
+					{/foreach}
+			{/present}
+					</dd>
+				</dl>
+		{/volist} -->
+						  </div>
+						  <div class="am-form-group">
+						    <div class="am-u-sm-10 am-u-sm-offset-3">
+						    	 <button type="submit" class="am-btn am-btn-primary">保存</button>
+						     	 <button type="submit" class="am-btn am-btn-primary">关闭</button>
+						    </div>
+						  </div>
+				</form>
+						
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+<script type="text/javascript">
+
+	$(".permission-list dt input:checkbox").click(function(){
+		$(this).closest("dl").find("dd input:checkbox").prop("checked",$(this).prop("checked"));
+	});
+	$(".permission-list2 dd input:checkbox").click(function(){
+		var l =$(this).parent().parent().find("input:checked").length;
+		var l2=$(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
+		if($(this).prop("checked")){
+			$(this).closest("dl").find("dt input:checkbox").prop("checked",true);
+			$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",true);
+		}
+		else{
+			if(l==0){
+				$(this).closest("dl").find("dt input:checkbox").prop("checked",false);
+			}
+			if(l2==0){
+				$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",false);
+			}
+		}
+	});
+	
+	// $("#form-admin-role-add").validate({
+	// 	rules:{
+	// 		roleName:{
+	// 			required:true,
+	// 		},
+	// 	},
+	// 	onkeyup:false,
+	// 	focusCleanup:true,
+	// 	success:"valid",
+	// 	submitHandler:function(form){
+	// 		$(form).ajaxSubmit();
+	// 		var index = parent.layer.getFrameIndex(window.name);
+	// 		parent.layer.close(index);
+	// 	}
+	// });
+
+</script>
+
+{/block}

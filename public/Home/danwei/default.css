@@ -1,0 +1,42 @@
+.pagecontent {
+	PADDING-BOTTOM: 10px; MARGIN: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 10px; ZOOM: 1; CLEAR: both; PADDING-TOP: 10px
+}
+.pagecontent A {
+	BORDER-BOTTOM: #a2d0e5 1px solid; BORDER-LEFT: #a2d0e5 1px solid; PADDING-BOTTOM: 3px; MARGIN: 0px 3px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; BACKGROUND: #fff; BORDER-TOP: #a2d0e5 1px solid; BORDER-RIGHT: #a2d0e5 1px solid; PADDING-TOP: 3px
+}
+.pagecontent SPAN {
+	BORDER-BOTTOM: #a2d0e5 1px solid; BORDER-LEFT: #a2d0e5 1px solid; PADDING-BOTTOM: 3px; MARGIN: 0px 3px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; BACKGROUND: #fff; BORDER-TOP: #a2d0e5 1px solid; BORDER-RIGHT: #a2d0e5 1px solid; PADDING-TOP: 3px
+}
+.pagecontent A:hover {
+	BORDER-BOTTOM: #fff 1px solid; BORDER-LEFT: #fff 1px solid; BACKGROUND: #104e8b; COLOR: #fff; BORDER-TOP: #fff 1px solid; BORDER-RIGHT: #fff 1px solid; TEXT-DECORATION: none
+}
+.Input_FSLogin {
+	BORDER-BOTTOM: #104e8b 1px solid; BORDER-LEFT: #104e8b 1px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 150px; PADDING-RIGHT: 0px; BORDER-TOP: #104e8b 1px solid; BORDER-RIGHT: #104e8b 1px solid; PADDING-TOP: 0px
+}
+.Button_FSLogin {
+	BORDER-BOTTOM: #104e8b 1px solid; BORDER-LEFT: #104e8b 1px solid; PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #f6f6f6; PADDING-LEFT: 0px; WIDTH: 150px; PADDING-RIGHT: 0px; BORDER-TOP: #104e8b 1px solid; BORDER-RIGHT: #104e8b 1px solid; PADDING-TOP: 0px
+}
+.f-checkbox {
+	
+}
+.f-select {
+	BORDER-BOTTOM: #104e8b 1px solid; BORDER-LEFT: #104e8b 1px solid; WIDTH: 100px; FONT-SIZE: 14px; BORDER-TOP: #104e8b 1px solid; CURSOR: pointer; MARGIN-RIGHT: 5px; BORDER-RIGHT: #104e8b 1px solid
+}
+.f-text {
+	BORDER-BOTTOM: #104e8b 1px solid; BORDER-LEFT: #104e8b 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 120%; BACKGROUND-COLOR: #fff; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-SIZE: 14px; BORDER-TOP: #104e8b 1px solid; BORDER-RIGHT: #104e8b 1px solid; PADDING-TOP: 0px
+}
+TEXTAREA {
+	TEXT-ALIGN: left; WIDTH: 594px; BACKGROUND: url(/templets/images/mapeng.net.gif) #fff no-repeat center center; HEIGHT: 200px; CLEAR: both
+}
+.f-button {
+	BORDER-BOTTOM: #999999 1px solid; BORDER-LEFT: #fff 1px solid; BACKGROUND-COLOR: #104e8b; COLOR: #fff; FONT-SIZE: 14px; BORDER-TOP: #fff 1px solid; CURSOR: pointer; FONT-WEIGHT: normal; BORDER-RIGHT: #999999 1px solid; PADDING-TOP: 3px
+}
+.f-reset {
+	BORDER-BOTTOM: #999 1px solid; BORDER-LEFT: #fff 1px solid; BACKGROUND-COLOR: #104e8b; COLOR: #fff; FONT-SIZE: 14px; BORDER-TOP: #fff 1px solid; CURSOR: pointer; FONT-WEIGHT: normal; BORDER-RIGHT: #999 1px solid; PADDING-TOP: 3px
+}
+#annbody {
+	PADDING-RIGHT: 16px; HEIGHT: 120px; OVERFLOW: hidden
+}
+.newNews {
+	WIDTH: 25px; BACKGROUND: url(new.gif) no-repeat 50% 50%
+}
