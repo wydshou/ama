@@ -7,6 +7,7 @@ namespace app\index\controller;
 use app\common\controller\HomeBase;
 use think\Db;
 use app\index\model\HomeGroup;
+use app\common\validate\HomeMember;
 class Home extends HomeBase
 {
 	public function index()
@@ -61,7 +62,7 @@ class Home extends HomeBase
 		$this->assign('rules',Db::name('home_group')->where(array('id'=>$id))->find());
 		if (request()->isPost()){
 				$res = input('post.');
-				 if (empty($res['title'])){
+				 if (empty($res['roleName'])){
 	            	return $this->error('角色名必须');
 	            }
 	            $r = model('HomeGroup');
@@ -105,15 +106,14 @@ class Home extends HomeBase
 		$this->assign('group',$group);
 		if (request()->isPost()){
 			$res = input('post.');
-			if ($res['user_name'] == ''){
-				return ['error'=>'管理员必填'];
-			}else if ($res['passwd'] != $res['passwd2']){
-				return ['error'=>'两次密码不一致'];
-			}else if(strlen($res['passwd']) < 6){
-				return ['error'=>'密码长度大于6'];
-			}else if(Db::name('home_member')->where('user_name',$res['user_name'])->find()){
-				return ['error'=>'管理员已经存在'];
-			}
+		/**
+		 * 验证
+		 * @var HomeMember
+		 */
+			$validate=new HomeMember();
+			if(!$validate->check($res)){				
+			    return ['error'=>$validate->getError()];				
+			}	
 
 			$a = model('HomeGroup');
 			if ($a->addadmin($res)){
@@ -146,7 +146,7 @@ class Home extends HomeBase
 		}		
 		return $this->fetch('Home/admini/edit');
 	}
-
+	//修改密码
 	public function adminpass()
 	{
 		if ($this->member()){
@@ -156,14 +156,14 @@ class Home extends HomeBase
 		$this->assign('aid',$id);
 		if (request()->isPost()){
 			$aid = input('aid');
-			$passwd = input('passwd');
-			$passwd2 = input('passwd2');
-			if ($passwd != $passwd2){
-				return ['error'=> '两次密码不一致'];
-			}elseif (strlen($passwd) < 6) {
-			    return ['error'=>'长度少于6位'];
-			}
-			$pass = think_ucenter_encrypt($passwd,config('PWD_KEY'));
+			$passwd = input('');
+
+			$validate=new HomeMember();
+			if(!$validate->scene('edit')->check($passwd)){				
+			    return ['error'=>$validate->getError()];				
+			}	
+			
+			$pass = think_ucenter_encrypt($passwd['passwd'],config('PWD_KEY'));
 			Db::name('home_member')->where('a_uid',$aid)->setField('passwd',$pass);
 			return ['success'=>'修改成功'];
 		}
@@ -194,6 +194,14 @@ class Home extends HomeBase
 
 	//卖家账号列表
 	public function user(){
+		   // $city="深圳"; //接收城市名
+ 
+		   //  $url="http://wthrcdn.etouch.cn/weather_mini?city=".$city; 
+		   //  $str = file_get_contents($url);  //调用接口获得天气数据
+		   //  //这一步很重要
+		   //  $result= gzdecode($str);   //解压
+		   //  //end
+		   //  echo  $result;die;
 		return $this->fetch();		
 	}
 }

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:41:"E:\WWW\ymx./app/index\view\sale\sale.html";i:1541127978;s:42:"E:\WWW\ymx\app\index\view\Public\base.html";i:1541144982;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:41:"E:\WWW\ymx./app/index\view\sale\sale.html";i:1541671087;s:42:"E:\WWW\ymx\app\index\view\Public\base.html";i:1541144982;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -109,61 +109,44 @@
 		<div class="content-page">
 			<!-- Start content -->
 			<div class="content">
-			
-			
-	
 			<div class="card-box">
-
-			
-			
-			
-			
 			<div class="am-g">
-			
-			
-			
-						<!-- Row start -->
 						<div class="am-u-md-6">
 							<div class="card-box widget-user" style="height: 300px;">
-                               
                                 	 <h4 class="m-t-0 m-b-5 font-600">实时销售概况（更新:18-10-16 18:54）</h4>
-									 
 									 		 <table style="width:520px; font-size: 13px;">
-                             	  
                              <tr style="border-bottom: 1px solid #f3f3f3; font-weight: 600;height: 30px;" >
                              	<td>日期</td>
 								<td>销售额</td>
 								<td>订单量</td>
 							   <td>销量</td>
                              </tr>
-                           
               					<tr style="border-bottom: 1px solid #f3f3f3">
 								<td>今日</td>
-                             	<td>$2,712</td>
-								<td>577</td>
-								<td>46</td>
+                             	<td>$<?php echo $arr['today_order']; ?></td>
+								<td><?php echo $arr['today']; ?></td>
+								<td><?php echo $arr['today_sum']; ?></td>
 								
                              </tr>
 							 
 							 	<tr style="border-bottom: 1px solid #f3f3f3">
 								<td>昨日</td>
-                             	<td>$2,12</td>
-								<td>57</td>
-								<td>456</td>
-								
+                             	<td>$<?php echo $array['ordertotle']; ?></td>
+								<td><?php echo $array['sum']; ?></td>
+								<td><?php echo $array['totle']; ?></td>
                              </tr>
                          </table>
 									 
-                               <div id="index-line-11" style="height: 200px;"></div>
+                    <div id="index-line-11" style="height: 200px;"></div>
 
                                 
                             </div>
 						</div>
 						<!-- col end -->
-			
-			
-			
-			
+
+			<script type="text/javascript">
+
+			</script>
 			
 					<!-- Row start -->
 						<div class="am-u-md-4">
@@ -198,11 +181,6 @@
                                 </div>
                             </div>
 						</div>
-						<!-- col end -->
-			
-						<!-- col end -->
-			
-						<!-- col end -->
 						<div class="am-u-md-2">
 							<div class="card-box widget-user" style="height: 300px;">
                                 <div>

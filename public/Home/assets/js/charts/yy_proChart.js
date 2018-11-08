@@ -2,6 +2,7 @@
 
 //实时销售概况
 (function(){
+
 	var myChart = echarts.init(document.getElementById("index-line-11"));
 	
 	option = {

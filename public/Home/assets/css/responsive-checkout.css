@@ -1,0 +1,128 @@
+
+ /*  site.css overwrites  */
+
+
+ .cart-prices {
+    text-align: right;
+    display: table-cell;
+ }
+
+
+.cart-price, .thead-total, .thead-price, .cart-total {
+    text-align: left;
+}
+
+.cart-totals {
+    border-top: 0px ;
+    margin-top: 0px;
+    padding-top: 0px;
+    text-align: left;
+}
+
+.mobile-summary .cart-price, .mobile-summary .thead-total, .mobile-summary .thead-price, .mobile-summary .cart-total {
+    text-align: right;
+    font-weight: 700;
+}
+
+.mobile-summary .cart-totals {
+    border-top: 0px ;
+    padding-top: 0px;
+    margin-top: 15px;
+    margin-bottom:15px;
+    text-align: right;
+}
+
+.subtotal-row td, .shipping-row td, .salestax-row td, .salestax-row td, .total-row td, .handling-row td {
+    text-align: left;
+}
+
+.cart-totals .subtotal-row td, .cart-totals .shipping-row td, .cart-totals .salestax-row td, .cart-totals .salestax-row td, .cart-totals .total-row td, .cart-totals .handling-row td {
+    text-align: right;
+}
+
+.cart-totals .subtotal-row td span, .cart-totals .shipping-row td span, .cart-totals .salestax-row td span, .cart-totals .salestax-row td span, .cart-totals .total-row td span, .cart-totals .handling-row td span {
+    text-align: left;
+    display:block;
+}
+
+.modal-body .cart-total {
+    text-align: left;
+}
+
+
+#divCoupon input {
+    margin-bottom:0px;
+
+}
+
+.storecart input[type="text"] {
+    width: 100%;}
+
+.storecart .cart-qty input {
+    display: inline-block;
+    width: 55px;
+    height:auto;
+    padding:8px 12px;
+    text-align:center;
+    margin-right:5px;
+
+}
+
+#divShipping {
+    padding-right: 0px;
+}
+
+
+.h1, .h2, .h3, h1, h2, h3 {
+  
+}
+
+
+.close:focus, .close:hover {
+    opacity:1;
+}
+
+/* additional bootstrap overides */
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    border-top: 0px;
+}
+
+.table-active, .table-active > td, .table-active > th {
+    background-color: transparent;
+    font-weight: 700;
+}
+
+.storecart .panel, .storecheckout .panel {
+    border-radius:0;
+    border:0px;
+    background-color:transparent;
+    box-shadow: 0 0px 0px rgba(0,0,0,.05);
+}
+
+.storecart .panel-body, .storecheckout .panel-body{
+    background-color:#fff;
+    padding:0;
+}
+
+.storecart .panel-default > .panel-heading, .storecheckout .panel-default > .panel-heading {
+    border:0px;
+    background: rgba(48, 42, 49, 0.85) none repeat scroll 0% 0%;
+    padding:20px 15px;
+    margin-bottom: 15px;
+    border-radius: 0px;
+   
+}
+
+.panel-heading h2 {
+    color:#fff;
+}
+
+.storecart .panel-heading .text-right {
+    color:#fff;
+}
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    bor

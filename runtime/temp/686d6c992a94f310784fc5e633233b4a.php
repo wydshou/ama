@@ -1,5 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:43:"E:\WWW\ymx./app/index\view\index\index.html";i:1540947592;}*/ ?>
-
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:43:"E:\WWW\ymx./app/index\view\index\index.html";i:1541553647;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

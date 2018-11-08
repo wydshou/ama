@@ -142,7 +142,8 @@ class Cate extends Base
 				$auth = array(
 		            'uid'             => $user['uid'],
 		            'username'        => $user['user_name'],
-		            'group_id'		  => $user['group_id'],		                     
+		            'group_id'		  => $user['group_id'],	
+		            'amz_id'		  => Db::name('seller_accoun')->where('u_id',$user['uid'])->value('id')                     
 				 );			
 								
 				$this->refresh_member($auth);
@@ -202,7 +203,8 @@ class Cate extends Base
 		            'uid'             => $user['a_uid'],
 		            'username'        => $user['user_name'],
 		            'group_id'		  => $user['group_id'],		
-		            'aid'			  => $user['aid'],                    
+		            'aid'			  => $user['aid'],  
+		            'amz_id'		  => Db::name('seller_accoun')->where('u_id',$user['aid'])->value('id')               
 				 );			
 								
 				$this->refresh_member($auth);

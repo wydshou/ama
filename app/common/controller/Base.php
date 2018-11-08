@@ -20,7 +20,7 @@ class Base extends controller{
 		// }
 		
 		$config =   cache('db_config_data');
-	
+		
         if(!$config){        	
             $config =   load_config();					
             cache('db_config_data',$config);

@@ -232,3 +232,89 @@ function to_under_score($str){
     $result = implode('',$array);
     return $result;
 }
+
+/**
+ * @author shou <[]>
+ * 亚马逊接口订单数据 返回json数据
+ */
+function invokeListOrders(MarketplaceWebServiceOrders_Interface $service, $request)
+  {
+      try {
+        $response = $service->ListOrders($request);
+        $dom = new DOMDocument();
+        $dom->loadXML($response->toXML());
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
+        $source = $dom->saveXML();
+        // 返回json数据
+        // if(is_file($source)){ //传的是文件，还是xml的string的判断
+        //   $xml_array=simplexml_load_file($source);
+        // }else{
+        //   $xml_array=simplexml_load_string($source);
+        // }
+        // $json = json_encode($xml_array);
+        // return $json;
+        //返回数组
+        libxml_disable_entity_loader(true);
+        $values = json_decode(json_encode(simplexml_load_string($source, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+        return $values;
+
+     } catch (MarketplaceWebServiceOrders_Exception $ex) {
+        $error = "Caught Exception: " . $ex->getMessage() . "\n"."Response Status Code: " . $ex->getStatusCode() . "\n"."Error Code: " . $ex->getErrorCode() . "\n"."XML: " . $ex->getXML() . "\n";
+        return $error;
+     }
+ }
+// function xmlToArray($xml)
+//  {
+//         //禁止引用外部xml实体
+//         libxml_disable_entity_loader(true);
+//         $values = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+//         return $values;
+//  }
+
+
+function total($type) {
+        switch ($type) {
+            case 3: { // 本月
+                $start=mktime(0,0,0,date('m'),1,date('Y'));
+                $end=mktime(0,0,0,date('m'),date('d')+1,date('Y'));
+            };break;
+            case 6: { //上月
+                $start = mktime(0,0,0,date('m')-1,1,date('Y'));
+                $end = mktime(0,0,0,date('m'),1,date('Y'))-1;
+            };break;
+            case 7: { //本周
+                $start = mktime(0,0,0,date('m'),date('d')-date('w'),date('Y'));
+                $end = mktime(0,0,0,date('m'),date('d'),date('Y'));
+            };break;
+            case 8: { //上周
+                $start = mktime(0,0,0,date('m'),date('d')-7-date('w'),date('Y'));
+                $end = mktime(0,0,0,date('m'),date('d')-date('w'),date('Y'))-1;
+            };break;
+            case 4: { // 本年
+                $start = mktime(0,0,0,1,1,date('Y'));
+                $end = mktime(0,0,0,1,1,date('Y')+1);
+            };break;
+            case 5: { // 昨天
+                $start = mktime(0,0,0,date('m'),date('d')-1,date('Y'));
+                $end = mktime(0,0,0,date('m'),date('d'),date('Y'))-1;
+            };break;
+            case 9: { // 前七天
+                $start = mktime(0,0,0,date('m'),date('d')-6,date('Y'));
+                $end = mktime(date('H'),date('m'),date('s'),date('m'),date('d'),date('Y'));
+            };break;
+            case 2: { // 前30天
+                $start = mktime(0,0,0,date('m'),date('d')-29,date('Y'));
+                $end = mktime(date('H'),date('m'),date('s'),date('m'),date('d'),date('Y'));
+            };break;
+            case 1: { // 今天
+                $start = mktime(0,0,0,date('m'),date('d'),date('Y'));
+                $end = mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
+            };break;
+            default:{
+                return '';
+            }
+ 
+        }
+        // return " BETWEEN '" . date('Y-m-d H:i:s',$start) . "' AND '" . date('Y-m-d H:i:s',$end) . "'";
+    }

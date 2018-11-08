@@ -15,6 +15,7 @@ class HomeBase extends Base{
 		parent::_initialize();		
 		define('UID',wyd_service('index','user')->is_login());
 		$this->get_menu();
+		// $this->ymxde();
 		if (!UID) {
 			$this->redirect('cate/login');
 		}
@@ -25,6 +26,7 @@ class HomeBase extends Base{
 			//权限判断  
        	if (session('member_user_auth.group_id') != 0) {//超级管理员不需要验证        
 	        $aid = session('member_user_auth.aid');
+	        $this->mws($aid);
 			$auth = new \user\User();
 
 			// dump($auth->check(request()->module().'/'.to_under_score(request()->controller()).'/'.request()->action(), session('member_user_auth.uid'), $aid));die; 
@@ -32,6 +34,8 @@ class HomeBase extends Base{
 								
 				$this->error('没有权限！');
 			}
+		}else{
+			$this->mws(UID);
 		}
 
 		// 统一 AdminBase 跳转模板
@@ -68,5 +72,18 @@ class HomeBase extends Base{
 
 		$parent_menu=list_to_tree($menu,'id','pid','children',0);
 		return $parent_menu;
+	}
+	//获取亚马逊账号信息
+	public function mws($uid)
+	{
+		$accoun = Db::name('seller_accoun')->where('u_id',$uid)->find();
+		define('AWS_ACCESS_KEY_ID', think_ucenter_decrypt($accoun['aws_access_key_id'],config('MWX_KEY')));  //访问密钥
+  		define('AWS_SECRET_ACCESS_KEY', think_ucenter_decrypt($accoun['aws_secret_accress_key'],config('MWX_KEY'))); //私有密钥
+  		define('MWS_AUTH_TOKEN', think_ucenter_decrypt($accoun['mwsauthtoken'],config('MWX_KEY'))); //授权令牌
+	    define ('MERCHANT_ID', think_ucenter_decrypt($accoun['merchant_id'],config('MWX_KEY'))); //卖家编号
+	    define ('MARKETPLACE_ID', think_ucenter_decrypt($accoun['marketplace_id'],config('MWX_KEY')));//商城编号
+
+	    define('APPLICATION_NAME', 'Orders');
+    	define('APPLICATION_VERSION', '2013-09-01');
 	}
 }
